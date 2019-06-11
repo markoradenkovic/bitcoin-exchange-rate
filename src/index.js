@@ -1,6 +1,8 @@
 import Chart from 'chart.js';
 
 window.onload = function () {
+  // getPriceHistory();
+  var price = getBitcoinPrice();
 
   // Load the line chart with default mockup bitcoin values
   var myChart = new Chart(document.getElementById("myChart"), {
@@ -9,7 +11,7 @@ window.onload = function () {
     labels: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31],
     datasets: [{
         data: [4000,4500,5000,4400,7000,8800,7700,6900,7300, 7990],
-        label: "Past 30 Days",
+        label: "Last Month",
         borderColor: "#3e95cd",
         fill: false
       }
@@ -18,12 +20,11 @@ window.onload = function () {
   options: {
     title: {
       display: true,
-      text: 'Bitcoin Price History Powered by CoinDesk ($USD)'
+      text: 'Bitcoin Price History Powered by CoinDesk (USD)'
     }
   }
 });
 
-  getPriceHistory();
   console.log("Window Loaded");
 };
 
@@ -46,11 +47,16 @@ function getPriceHistory(){
 }
 
 function getBitcoinPrice(){
+  var price;
   // Make a request for a user with a given ID
-  axios.get('/user?ID=12345')
+  axios.get('https://api.coindesk.com/v1/bpi/currentprice.json')
   .then(function (response) {
     // handle success
     console.log(response);
+    price = response.data.bpi.USD.rate;
+    price = price.split('.')[0];
+    console.log("Bitcoin Price: "+price+" $");
+    document.getElementById("btc-price").textContent= price+" $";
   })
   .catch(function (error) {
     // handle error
@@ -58,5 +64,6 @@ function getBitcoinPrice(){
   })
   .finally(function () {
     // always executed
+    return price;
   });
 }
