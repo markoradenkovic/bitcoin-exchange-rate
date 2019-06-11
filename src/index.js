@@ -1,22 +1,79 @@
-import * as stack from './stack.js';
+import Chart from 'chart.js';
 
 window.onload = function () {
-  console.log("done");
-  var pop = document.getElementById('pop');
-  var push = document.getElementById('push');
-  var peek = document.getElementById('peek');
-  var display = document.getElementById('top_of_stack');
 
-  pop.addEventListener("click", function() {
-    var text = "Tog bort " + stack.pop();
-    alert(text);
+  // Load the line chart with default mockup bitcoin values
+  var ctx = document.getElementById('myChart');
+  var myChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+          labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+          datasets: [{
+              label: '# of Votes',
+              data: [12, 19, 3, 5, 2, 3],
+              backgroundColor: [
+                  'rgba(255, 99, 132, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(255, 206, 86, 0.2)',
+                  'rgba(75, 192, 192, 0.2)',
+                  'rgba(153, 102, 255, 0.2)',
+                  'rgba(255, 159, 64, 0.2)'
+              ],
+              borderColor: [
+                  'rgba(255, 99, 132, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(255, 206, 86, 1)',
+                  'rgba(75, 192, 192, 1)',
+                  'rgba(153, 102, 255, 1)',
+                  'rgba(255, 159, 64, 1)'
+              ],
+              borderWidth: 1
+          }]
+      },
+      options: {
+          scales: {
+              yAxes: [{
+                  ticks: {
+                      beginAtZero: true
+                  }
+              }]
+          }
+      }
   });
-  push.addEventListener("click", function() {
-    var x = prompt("Vad ska vi lägga på stacken?");
-    stack.push(x);
-    display.innerHTML = x;
-  });
-  peek.addEventListener("click", function() {
-    display.innerHTML = stack.peek();
-  });
+
+  console.log("Window Loaded");
 };
+
+const axios = require('axios');
+
+function getPriceHistory(){
+  // Make a request for a user with a given ID
+  axios.get('/user?ID=12345')
+  .then(function (response) {
+    // handle success
+    console.log(response);
+  })
+  .catch(function (error) {
+    // handle error
+    console.log(error);
+  })
+  .finally(function () {
+    // always executed
+  });
+}
+
+function getBitcoinPrice(){
+  // Make a request for a user with a given ID
+  axios.get('/user?ID=12345')
+  .then(function (response) {
+    // handle success
+    console.log(response);
+  })
+  .catch(function (error) {
+    // handle error
+    console.log(error);
+  })
+  .finally(function () {
+    // always executed
+  });
+}
