@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/markoradenkovic/bitcoin-exchange-rate/issues"
   },
-  "homepage": "https://github.com/markoradenkovic/bitcoin-exchange-rate#readme"
+  "homepage": "https://github.com/markoradenkovic/bitcoin-exchange-rate#readme",
+  "devDependencies": {
+    "webpack": "^4.33.0",
+    "webpack-cli": "^3.3.4"
+  }
 }
