@@ -1,0 +1,19 @@
+{
+  "name": "bitcoin-exchange-rate",
+  "version": "1.0.0",
+  "description": "A web application that visualizes the exchange rate for bitcoin in a chart",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "jest tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/markoradenkovic/bitcoin-exchange-rate.git"
+  },
+  "author": "Marko Radenkovic",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/markoradenkovic/bitcoin-exchange-rate/issues"
+  },
+  "homepage": "https://github.com/markoradenkovic/bitcoin-exchange-rate#readme"
+}
