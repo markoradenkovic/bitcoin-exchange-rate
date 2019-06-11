@@ -3,44 +3,27 @@ import Chart from 'chart.js';
 window.onload = function () {
 
   // Load the line chart with default mockup bitcoin values
-  var ctx = document.getElementById('myChart');
-  var myChart = new Chart(ctx, {
-      type: 'bar',
-      data: {
-          labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-          datasets: [{
-              label: '# of Votes',
-              data: [12, 19, 3, 5, 2, 3],
-              backgroundColor: [
-                  'rgba(255, 99, 132, 0.2)',
-                  'rgba(54, 162, 235, 0.2)',
-                  'rgba(255, 206, 86, 0.2)',
-                  'rgba(75, 192, 192, 0.2)',
-                  'rgba(153, 102, 255, 0.2)',
-                  'rgba(255, 159, 64, 0.2)'
-              ],
-              borderColor: [
-                  'rgba(255, 99, 132, 1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 1)',
-                  'rgba(75, 192, 192, 1)',
-                  'rgba(153, 102, 255, 1)',
-                  'rgba(255, 159, 64, 1)'
-              ],
-              borderWidth: 1
-          }]
-      },
-      options: {
-          scales: {
-              yAxes: [{
-                  ticks: {
-                      beginAtZero: true
-                  }
-              }]
-          }
+  var myChart = new Chart(document.getElementById("myChart"), {
+  type: 'line',
+  data: {
+    labels: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31],
+    datasets: [{
+        data: [4000,4500,5000,4400,7000,8800,7700,6900,7300, 7990],
+        label: "Past 30 Days",
+        borderColor: "#3e95cd",
+        fill: false
       }
-  });
+    ]
+  },
+  options: {
+    title: {
+      display: true,
+      text: 'Bitcoin Price History Powered by CoinDesk ($USD)'
+    }
+  }
+});
 
+  getPriceHistory();
   console.log("Window Loaded");
 };
 
@@ -48,7 +31,7 @@ const axios = require('axios');
 
 function getPriceHistory(){
   // Make a request for a user with a given ID
-  axios.get('/user?ID=12345')
+  axios.get('https://api.coindesk.com/v1/bpi/historical/close.json?start=2019-02-01&end=2019-02-28')
   .then(function (response) {
     // handle success
     console.log(response);
